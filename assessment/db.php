@@ -46,7 +46,7 @@ if(isset($_POST['function']))
                               address varchar(255) NOT NULL,
                               phone varchar(255) NOT NULL,
                               product varchar(255) NOT NULL,
-                              price varchar(255) NOT NULL,
+                              price int(5) NOT NULL,
                               brand varchar(255) NOT NULL,
                               type varchar(255) NOT NULL,
                               status varchar(255) NOT NULL,
@@ -88,7 +88,7 @@ if(isset($_POST['function']))
   {
 
     $conn = new mysqli($servername,$username,$password,$db);
-    $sql_key = "SELECT * FROM $table where status = 0 order by ".$_POST['sort_by'] ." ". $_POST['sort_order'];
+    $sql_key = "SELECT * FROM $table where status = 0 order by CAST(".$_POST['sort_by'] ." as UNSIGNED ) ". $_POST['sort_order'];
     // print_r($sql_key);die;
     $result = $conn->query($sql_key);
     $html_con = '';
